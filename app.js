@@ -1,22 +1,21 @@
 // This function loads chuck norris data from the chuck norris jokes API
-function fetchPokemonJSON() {
-    
-    const chucknorrisId = 1;
-    const url = `https://api.chucknorris.io/${chucknorrisId}`;
+function fetchChuckNorris() {
+    const url = "https://api.chucknorris.io/jokes/random";
     axios.get(url)
-      .then(response => response.data) // DIFFERENT FROM FETCH: response.data instead of response.json()
-      .then(chucknorris =>  {
-        console.log('data decoded from JSON:', chucknorris);
-  
+      .then(response => response.data)
+      .then(chuckNorrisQuote => {
+        console.log ('data decoded from Json', chuckNorrisQuote );
+
   
         // Build a block of HTML
-        const chucknorrisHtml = `
-          <p><strong>${chucknorris.value}</strong></p>
-          <img src="${chucknorris.icon_url}" />
+        const ChuckNorrisHtml = `
+          <p><strong>${chuckNorrisQuote.value}</strong></p>
+          <img src="${chuckNorrisQuote.icon_url}" />
         `;
+        document.querySelector('#chuck-norris').innerHTML = ChuckNorrisHtml;
 
       });
   }
   
   
-  fetchchucknorrisJSON();
+  fetchChuckNorris();
